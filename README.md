@@ -17,6 +17,6 @@
 
 **Reset Network Button**: The user can reset and renew the network connection by clicking the "Reset Network" button.
 
-**Clean N Kill Button**: The user can Kill unresponsive apps in the background and clean temporary files (Temp, prefetch, and Temp in AppData) by clicking the "Clean N Kill" button.
+**Kill N Clean Button**: The user can Kill unresponsive apps in the background and clean temporary files (Temp, prefetch, and Temp in AppData) by clicking the "Kill N Clean" button.
 
 **Styling**: The application saves the last position of the window and user inputs in the text box fields. The form's appearance is customized with rounded corners using "Gdi32.dll" and a custom title bar.
