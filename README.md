@@ -12,6 +12,8 @@
 
 **Performance Statistics**: The application displays CPU and RAM usage statistics.
 
+**Network Adapters Button**: Opens the Network adapters in control panel directly.
+
 **Reset Network Button**: The user can reset and renew the network connection by clicking the "Reset Network" button.
 
 **Clean N Kill Button**: The user can Kill unresponsive apps in the background and clean temporary files (Temp, prefetch, and Temp in AppData) by clicking the "Clean N Kill" button.
