@@ -1,7 +1,7 @@
 # Pingerino By Silicon Squire
 **Simple Ping And Network Monitoring tool**
 
-![Interface](Pingerino_rhg77C336y.png))
+![Interface](Pingerino_stat.png))
 
 **IP Address Input**: The user can enter an IP address in a text box to specify the target IP for pinging.
 
@@ -10,6 +10,8 @@
 **Ping Panel**: The application automatically sends pings to the 8.8.8.8 IP address at the defined 300ms interval.
 
 **Network Statistics**: The application calculates and displays packet loss and jitter statistics based on the ping results.
+
+*Shows Min, Avg, and Max values: Ping, Packetloss and Jitter now shows min avg and max values.
 
 **Performance Statistics**: The application displays CPU and RAM usage statistics.
 
