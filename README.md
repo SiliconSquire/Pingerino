@@ -11,7 +11,7 @@
 
 **Network Statistics**: The application calculates and displays packet loss and jitter statistics based on the ping results.
 
-*Shows Min, Avg, and Max values: Ping, Packetloss and Jitter now shows min avg and max values.
+**Shows Min, Avg, and Max values**: Ping, Packetloss and Jitter now shows min avg and max values.
 
 **Performance Statistics**: The application displays CPU and RAM usage statistics.
 
