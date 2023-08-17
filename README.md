@@ -1,7 +1,7 @@
 # Pingerino By Silicon Squire
 **Simple Ping And Network Monitoring tool**
 
-![Interface](Pingerino_stat.png))
+![Interface](Pingerino_Wa5UGK2B2D.png))
 
 **IP Address Input**: The user can enter an IP address in a text box to specify the target IP for pinging.
 
