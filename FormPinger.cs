@@ -134,9 +134,14 @@ namespace Pingerino
             ipAddress.Text = Properties.Settings.Default.IpAddressValue;
             textBoxInterval.Text = Properties.Settings.Default.TextBoxIntervalValue;
             // ...
-        }
 
 
+            autoPingEnabled = Properties.Settings.Default.AutoPingEnabled;
+            if (autoPingEnabled)
+            {
+                StartAutoUpdate(); // Start auto-pinging if it's enabled
+                contextMenuStrip1.Items[1].Text = "[2] Auto Ping ✔";
+            }
 
 
         private void StartAutoUpdate()
@@ -436,8 +441,6 @@ namespace Pingerino
                 }
             }
 
-            System.Threading.Thread.Sleep(3000);
-
             // Delete files
             string[] folders = new string[]
             {
@@ -476,7 +479,6 @@ namespace Pingerino
                             Console.WriteLine("Could not delete directory: " + dir.FullName);
                         }
                     }
-                }
                 catch (Exception)
                 {
                     // Handle exceptions here
