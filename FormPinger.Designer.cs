@@ -142,7 +142,7 @@
             this.LOGOCF.ErrorImage = ((System.Drawing.Image)(resources.GetObject("LOGOCF.ErrorImage")));
             this.LOGOCF.Image = ((System.Drawing.Image)(resources.GetObject("LOGOCF.Image")));
             this.LOGOCF.InitialImage = ((System.Drawing.Image)(resources.GetObject("LOGOCF.InitialImage")));
-            this.LOGOCF.Location = new System.Drawing.Point(663, 663);
+            this.LOGOCF.Location = new System.Drawing.Point(662, 662);
             this.LOGOCF.Name = "LOGOCF";
             this.LOGOCF.Size = new System.Drawing.Size(38, 38);
             this.LOGOCF.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
