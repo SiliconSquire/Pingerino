@@ -54,6 +54,12 @@ namespace Pingerino
 
         #endregion
 
+        private async System.Threading.Tasks.Task InitializeNetworkOperationsAsync()
+        {
+            await System.Threading.Tasks.Task.Run(() => UpdateNetworkStatistics());
+            await System.Threading.Tasks.Task.Run(() => PingCurrentIpAddress(null));
+        }
+
         #region Constructor
 
         public FormPinger()
@@ -137,7 +143,8 @@ namespace Pingerino
             StartAutoUpdate();
 
             // Update network statistics when the app is opened
-            UpdateNetworkStatistics();
+
+            System.Threading.Tasks.Task.Run(() => InitializeNetworkOperationsAsync());
         }
 
 
@@ -186,7 +193,7 @@ namespace Pingerino
         private void FormPinger_Load(object sender, EventArgs e)
         {
             // Update network statistics when the app is opened
-            UpdateNetworkStatistics();
+      //      UpdateNetworkStatistics();
 
             // Load the form's position
             if (Properties.Settings.Default.FormPosition != null)
@@ -212,10 +219,15 @@ namespace Pingerino
             }
 
         }
-            
+
+
+
+
+
+
         private void StartAutoUpdate()
         {
-            // Start the timer to automatically update every 50ms
+            // Start the timer to automatically update
             pingTimer.Change(0, 300);
         }
 
@@ -249,7 +261,7 @@ namespace Pingerino
         private void PingCurrentIpAddress(object state)
         {
             // Update network statistics before pinging the IP address
-            UpdateNetworkStatistics();
+     //       UpdateNetworkStatistics();
             PingIpAddress();
         }
 
@@ -261,61 +273,65 @@ namespace Pingerino
             {
                 if (!NetworkInterface.GetIsNetworkAvailable())
                 {
-                    // Display an error message indicating no network connection
                     AddLineToOutput("No network connection available.");
                     return;
                 }
-                Ping ping = new Ping();
-                PingReply reply = ping.Send(ipAddress);
 
-                if (reply.Status == IPStatus.Success)
+                using (Ping ping = new Ping())
                 {
-                    AddLineToOutput($"{timestamp} - Pinging {ipAddress} - Success - RTT: {reply.RoundtripTime}ms");
-                    UpdatePingRoundTripTimes(reply.RoundtripTime); // Update the list
-                    UpdatePingStatistics(); // Calculate and update Max, Average, and Min values
-                }
-                else
-                {
-                    AddLineToOutput($"{timestamp} - Ping to {ipAddress} - Failed - {reply.Status}");
+                    PingReply reply = ping.Send(ipAddress);
+
+                    if (reply.Status == IPStatus.Success)
+                    {
+                        AddLineToOutput($"{timestamp} - Pinging {ipAddress} - Success - RTT: {reply.RoundtripTime}ms");
+                        UpdatePingRoundTripTimes(reply.RoundtripTime);
+                        UpdatePingStatistics();
+                    }
+                    else
+                    {
+                        AddLineToOutput($"{timestamp} - Ping to {ipAddress} - Failed - {reply.Status}");
+                    }
                 }
             }
-
             catch (PingException pEx)
             {
-                dataGridView1.Rows.Add(new object[] { DateTime.Now, $"Ping exception: {pEx.Message}" });
+                AddLineToOutput($"{timestamp} - Ping exception: {pEx.Message}");
             }
-
-
-
+            catch (InvalidOperationException opEx)
+            {
+                AddLineToOutput($"{timestamp} - Operation invalid: {opEx.Message}");
+            }
             catch (Exception ex)
             {
-                AddLineToOutput($"{timestamp} - Ping to {ipAddress} - Failed - {ex.Message}");
+                AddLineToOutput($"{timestamp} - Unexpected error: {ex.Message}");
             }
-
-
         }
+
 
         private void AddLineToOutput(string newLine)
         {
-            if (dataGridView1.InvokeRequired)
+            if (this.IsHandleCreated)
             {
-                this.Invoke(new Action<string>(AddLineToOutput), newLine);
-            }
-            else
-            {
-                outputLines.Add(newLine);
-                dataGridView1.Rows.Clear();
-
-                foreach (var currentLine in outputLines.ToArray())
+                if (dataGridView1.InvokeRequired)
                 {
-                    var splitLine = currentLine.Split(new[] { " - " }, 2, StringSplitOptions.None);
-                    if (splitLine.Length >= 2)
+                    this.Invoke(new Action<string>(AddLineToOutput), newLine);
+                }
+                else
+                {
+                    outputLines.Add(newLine);
+                    dataGridView1.Rows.Clear();
+
+                    foreach (var currentLine in outputLines.ToArray())
                     {
-                        var timestampPart = splitLine[0];
-                        var messagePart = splitLine[1];
-                        dataGridView1.Rows.Add(new object[] { timestampPart, messagePart });
+                        var splitLine = currentLine.Split(new[] { " - " }, 2, StringSplitOptions.None);
+                        if (splitLine.Length >= 2)
+                        {
+                            var timestampPart = splitLine[0];
+                            var messagePart = splitLine[1];
+                            dataGridView1.Rows.Add(new object[] { timestampPart, messagePart });
+                        }
+                        dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
                     }
-                    dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
                 }
             }
         }
