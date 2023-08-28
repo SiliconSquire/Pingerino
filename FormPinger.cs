@@ -282,28 +282,28 @@ namespace Pingerino
 
                     if (reply.Status == IPStatus.Success)
                     {
-                        AddLineToOutput(timestamp, $"Pinging {ipAddress} - Success", $"{reply.RoundtripTime}ms");
+                        AddLineToOutput(timestamp, $"Pinging {ipAddress} - Success", $"{reply.RoundtripTime} ms");
                         UpdatePingRoundTripTimes(reply.RoundtripTime);
                         UpdatePingStatistics();
-
                     }
                     else
                     {
-                        AddLineToOutput(timestamp, $"Ping to {ipAddress} - Failed", reply.Status.ToString());
+                        AddLineToOutput(timestamp, $"Ping to {ipAddress} - Failed: {reply.Status}", "");
                     }
                 }
+
             }
             catch (PingException pEx)
             {
-                AddLineToOutput(timestamp, "Ping exception:", pEx.Message);
+                AddLineToOutput(timestamp, $"Ping exception: {pEx.Message}", "");
             }
             catch (InvalidOperationException opEx)
             {
-                AddLineToOutput(timestamp, "Operation invalid:", opEx.Message);
+                AddLineToOutput(timestamp, $"Operation invalid: {opEx.Message}", "");
             }
             catch (Exception ex)
             {
-                AddLineToOutput(timestamp, "Unexpected error:", ex.Message);
+                AddLineToOutput(timestamp, $"Unexpected error: {ex.Message}", "");
             }
         }
 
@@ -324,6 +324,36 @@ namespace Pingerino
             }
         }
 
+
+
+        private void UpdateSmootherTextOutput(string message)
+        {
+            if (dataGridView1.InvokeRequired)
+            {
+                this.Invoke(new Action<string>(UpdateSmootherTextOutput), message);
+            }
+            else
+            {
+                var Time = DateTime.Now.ToString("HH:mm:ss.fff");
+                var rttStartIndex = message.IndexOf("RTT:");
+
+                if (rttStartIndex != -1)
+                {
+                    var Status = message.Substring(0, rttStartIndex).Trim(); // Get everything before "RTT:"
+                    var RTT = message.Substring(rttStartIndex + 4).Trim();  // Get the value after "RTT:"
+
+                    int rowIndex = dataGridView1.Rows.Add();
+                    DataGridViewRow row = dataGridView1.Rows[rowIndex];
+                    row.Cells["Time"].Value = Time;
+                    row.Cells["Status"].Value = Status;
+                    row.Cells["RTT"].Value = RTT;
+                }
+                else
+                {
+                    dataGridView1.Rows.Add(new object[] { Time, message, string.Empty });
+                }
+            }
+        }
 
         public class CircularBuffer<T>
         {
@@ -799,39 +829,6 @@ namespace Pingerino
         {
             Process.Start("control", "ncpa.cpl");
         }
-        private void UpdateSmootherTextOutput(string message)
-        {
-            if (dataGridView1.InvokeRequired)
-            {
-                this.Invoke(new Action<string>(UpdateSmootherTextOutput), message);
-            }
-            else
-            {
-                var Time = DateTime.Now.ToString("HH:mm:ss.fff");
-                var rttStartIndex = message.IndexOf("RTT:");
-
-                if (rttStartIndex != -1)
-                {
-                    var Status = message.Substring(0, rttStartIndex).Trim(); // Get everything before "RTT:"
-                    var RTT = message.Substring(rttStartIndex + 4).Trim();  // Get the value after "RTT:"
-
-                    int rowIndex = dataGridView1.Rows.Add();
-                    DataGridViewRow row = dataGridView1.Rows[rowIndex];
-                    row.Cells["Time"].Value = Time;
-                    row.Cells["Status"].Value = Status;
-                    row.Cells["RTT"].Value = RTT;
-                }
-                else
-                {
-                    dataGridView1.Rows.Add(new object[] { Time, message, string.Empty });
-                }
-            }
-        }
-
-
-
-
-
 
 
         private async void ButtonCleanNetwork_Click(object sender, EventArgs e)
