@@ -260,8 +260,6 @@ namespace Pingerino
 
         private void PingCurrentIpAddress(object state)
         {
-            // Update network statistics before pinging the IP address
-     //       UpdateNetworkStatistics();
             PingIpAddress();
         }
 
@@ -273,7 +271,7 @@ namespace Pingerino
             {
                 if (!NetworkInterface.GetIsNetworkAvailable())
                 {
-                    AddLineToOutput("No network connection available.");
+                    AddLineToOutput(timestamp, "No network connection available.", "");
                     return;
                 }
 
@@ -283,59 +281,46 @@ namespace Pingerino
 
                     if (reply.Status == IPStatus.Success)
                     {
-                        AddLineToOutput($"{timestamp} - Pinging {ipAddress} - Success - RTT: {reply.RoundtripTime}ms");
+                        AddLineToOutput(timestamp, $"Pinging {ipAddress} - Success", $"{reply.RoundtripTime}ms");
                         UpdatePingRoundTripTimes(reply.RoundtripTime);
                         UpdatePingStatistics();
                     }
                     else
                     {
-                        AddLineToOutput($"{timestamp} - Ping to {ipAddress} - Failed - {reply.Status}");
+                        AddLineToOutput(timestamp, $"Ping to {ipAddress} - Failed", reply.Status.ToString());
                     }
                 }
             }
             catch (PingException pEx)
             {
-                AddLineToOutput($"{timestamp} - Ping exception: {pEx.Message}");
+                AddLineToOutput(timestamp, "Ping exception:", pEx.Message);
             }
             catch (InvalidOperationException opEx)
             {
-                AddLineToOutput($"{timestamp} - Operation invalid: {opEx.Message}");
+                AddLineToOutput(timestamp, "Operation invalid:", opEx.Message);
             }
             catch (Exception ex)
             {
-                AddLineToOutput($"{timestamp} - Unexpected error: {ex.Message}");
+                AddLineToOutput(timestamp, "Unexpected error:", ex.Message);
             }
         }
 
-
-        private void AddLineToOutput(string newLine)
+        private void AddLineToOutput(string Time, string Status, string RTT = "")
         {
             if (this.IsHandleCreated)
             {
                 if (dataGridView1.InvokeRequired)
                 {
-                    this.Invoke(new Action<string>(AddLineToOutput), newLine);
+                    this.Invoke(new Action<string, string, string>(AddLineToOutput), Time, Status, RTT);
                 }
                 else
                 {
-                    outputLines.Add(newLine);
-                    dataGridView1.Rows.Clear();
-
-                    foreach (var currentLine in outputLines.ToArray())
-                    {
-                        var splitLine = currentLine.Split(new[] { " - " }, 2, StringSplitOptions.None);
-                        if (splitLine.Length >= 2)
-                        {
-                            var timestampPart = splitLine[0];
-                            var messagePart = splitLine[1];
-                            dataGridView1.Rows.Add(new object[] { timestampPart, messagePart });
-                        }
-                        dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
-                    }
+                    dataGridView1.Rows.Add(new object[] { Time, Status, RTT });
+                    outputLines.Add($"{Time} - {Status} - {RTT}"); // Store to CircularBuffer
+                    dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
                 }
             }
         }
-
 
 
 
@@ -816,7 +801,6 @@ namespace Pingerino
         {
             Process.Start("control", "ncpa.cpl");
         }
-
         private void UpdateSmootherTextOutput(string message)
         {
             if (dataGridView1.InvokeRequired)
@@ -825,9 +809,31 @@ namespace Pingerino
             }
             else
             {
-                dataGridView1.Rows.Add(new object[] { DateTime.Now, message });
+                var Time = DateTime.Now.ToString("HH:mm:ss.fff");
+                var rttStartIndex = message.IndexOf("RTT:");
+
+                if (rttStartIndex != -1)
+                {
+                    var Status = message.Substring(0, rttStartIndex).Trim(); // Get everything before "RTT:"
+                    var RTT = message.Substring(rttStartIndex + 4).Trim();  // Get the value after "RTT:"
+
+                    int rowIndex = dataGridView1.Rows.Add();
+                    DataGridViewRow row = dataGridView1.Rows[rowIndex];
+                    row.Cells["Time"].Value = Time;
+                    row.Cells["Status"].Value = Status;
+                    row.Cells["RTT"].Value = RTT;
+                }
+                else
+                {
+                    dataGridView1.Rows.Add(new object[] { Time, message, string.Empty });
+                }
             }
         }
+
+
+
+
+
 
 
         private async void ButtonCleanNetwork_Click(object sender, EventArgs e)
