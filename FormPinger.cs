@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Threading;
@@ -58,6 +59,8 @@ namespace Pingerino
         public FormPinger()
         {
             InitializeComponent();
+
+
 
             ButtonCleanTemp = buttonCleanTemp;
 
@@ -209,7 +212,7 @@ namespace Pingerino
             }
 
         }
-
+            
         private void StartAutoUpdate()
         {
             // Start the timer to automatically update every 50ms
@@ -279,7 +282,7 @@ namespace Pingerino
 
             catch (PingException pEx)
             {
-                SmootherTextOutput.AppendText($"{timestamp} - Ping exception: {pEx.Message}\n");
+                dataGridView1.Rows.Add(new object[] { DateTime.Now, $"Ping exception: {pEx.Message}" });
             }
 
 
@@ -292,21 +295,33 @@ namespace Pingerino
 
         }
 
-        private void AddLineToOutput(string line)
+        private void AddLineToOutput(string newLine)
         {
-            if (SmootherTextOutput.InvokeRequired)
+            if (dataGridView1.InvokeRequired)
             {
-                this.Invoke(new Action<string>(AddLineToOutput), line);
+                this.Invoke(new Action<string>(AddLineToOutput), newLine);
             }
             else
             {
-                // Assuming outputLines is the buffer or collection you're using to manage your output
-                outputLines.Add(line);
+                outputLines.Add(newLine);
+                dataGridView1.Rows.Clear();
 
-                // Clear and reset the lines in SmootherTextOutput
-                SmootherTextOutput.Lines = outputLines.ToArray();
+                foreach (var currentLine in outputLines.ToArray())
+                {
+                    var splitLine = currentLine.Split(new[] { " - " }, 2, StringSplitOptions.None);
+                    if (splitLine.Length >= 2)
+                    {
+                        var timestampPart = splitLine[0];
+                        var messagePart = splitLine[1];
+                        dataGridView1.Rows.Add(new object[] { timestampPart, messagePart });
+                    }
+                    dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
+                }
             }
         }
+
+
+
 
 
 
@@ -788,13 +803,13 @@ namespace Pingerino
 
         private void UpdateSmootherTextOutput(string message)
         {
-            if (SmootherTextOutput.InvokeRequired)
+            if (dataGridView1.InvokeRequired)
             {
                 this.Invoke(new Action<string>(UpdateSmootherTextOutput), message);
             }
             else
             {
-                SmootherTextOutput.AppendText(message + Environment.NewLine);
+                dataGridView1.Rows.Add(new object[] { DateTime.Now, message });
             }
         }
 
@@ -1030,11 +1045,5 @@ namespace Pingerino
         }
 
         #endregion
-
-        private void SmootherTextOutput_TextChanged(object sender, EventArgs e)
-        {
-            SmootherTextOutput.SelectionStart = SmootherTextOutput.TextLength;
-            SmootherTextOutput.ScrollToCaret();
-        }
     }
 }
