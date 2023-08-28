@@ -261,6 +261,7 @@ namespace Pingerino
         private void PingCurrentIpAddress(object state)
         {
             PingIpAddress();
+            UpdateNetworkStatistics();
         }
 
         private void PingIpAddress()
@@ -284,6 +285,7 @@ namespace Pingerino
                         AddLineToOutput(timestamp, $"Pinging {ipAddress} - Success", $"{reply.RoundtripTime}ms");
                         UpdatePingRoundTripTimes(reply.RoundtripTime);
                         UpdatePingStatistics();
+
                     }
                     else
                     {
@@ -321,10 +323,6 @@ namespace Pingerino
                 }
             }
         }
-
-
-
-
 
 
         public class CircularBuffer<T>
