@@ -8,7 +8,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Threading;
@@ -32,6 +31,7 @@ namespace Pingerino
         private readonly List<long> pingRoundTripTimes = new List<long>();
         private readonly List<double> packetLossValues = new List<double>();
         private readonly List<double> jitterValues = new List<double>();
+        private readonly object lockObject = new object();
         private readonly WinForms.ProgressBar progressBar;
         private readonly BackgroundWorker worker = new BackgroundWorker();
         private readonly WinForms.Button ButtonCleanTemp;
@@ -65,8 +65,6 @@ namespace Pingerino
         public FormPinger()
         {
             InitializeComponent();
-
-
 
             ButtonCleanTemp = buttonCleanTemp;
 
@@ -193,7 +191,7 @@ namespace Pingerino
         private void FormPinger_Load(object sender, EventArgs e)
         {
             // Update network statistics when the app is opened
-      //      UpdateNetworkStatistics();
+            //      UpdateNetworkStatistics();
 
             // Load the form's position
             if (Properties.Settings.Default.FormPosition != null)
@@ -219,10 +217,6 @@ namespace Pingerino
             }
 
         }
-
-
-
-
 
 
         private void StartAutoUpdate()
@@ -485,45 +479,42 @@ namespace Pingerino
                 long minPing = pingRoundTripTimes.Min();
                 double avgPing = pingRoundTripTimes.Average();
 
-                // Update the respective Text Boxes with max, avg, and min ping values
-                if (TextBoxMaxPing.InvokeRequired)
+                if (!dataGridViewPing.InvokeRequired)
                 {
-                    this.Invoke((MethodInvoker)delegate
+                    // Update the row with stats
+                    if (dataGridViewPing.Rows.Count == 0)
                     {
-                        TextBoxMaxPing.Text = $"{maxPing} ms";
-                    });
+                        dataGridViewPing.Rows.Add();
+                    }
+                    dataGridViewPing.Rows[0].Cells["MaxPing"].Value = $"{maxPing} ms";
+                    dataGridViewPing.Rows[0].Cells["MinPing"].Value = $"{minPing} ms";
+                    dataGridViewPing.Rows[0].Cells["AvgPing"].Value = $"{avgPing:F0} ms";
+
+                    // Resize the row
+                    dataGridViewPing.AutoResizeRow(0);
                 }
                 else
                 {
-                    TextBoxMaxPing.Text = $"{maxPing} ms";
-                }
-
-                if (TextBoxMinPing.InvokeRequired)
-                {
                     this.Invoke((MethodInvoker)delegate
                     {
-                        TextBoxMinPing.Text = $"{minPing} ms";
+                        // Update the row with stats
+                        if (dataGridViewPing.Rows.Count == 0)
+                        {
+                            dataGridViewPing.Rows.Add();
+                        }
+                        dataGridViewPing.Rows[0].Cells["MaxPing"].Value = $"{maxPing} ms";
+                        dataGridViewPing.Rows[0].Cells["MinPing"].Value = $"{minPing} ms";
+                        dataGridViewPing.Rows[0].Cells["AvgPing"].Value = $"{avgPing:F0} ms";
+
+                        // Resize the row
+                        dataGridViewPing.AutoResizeRow(0);
                     });
                 }
-                else
-                {
-                    TextBoxMinPing.Text = $"{minPing} ms";
-                }
-
-                if (TextBoxAvgPing.InvokeRequired)
-                {
-                    this.Invoke((MethodInvoker)delegate
-                    {
-                        TextBoxAvgPing.Text = $"{avgPing:F0} ms";
-                    });
-                }
-                else
-                {
-                    TextBoxAvgPing.Text = $"{avgPing:F0} ms";
-                }
-
             }
         }
+
+
+
 
         private void UpdateOption1Text(string Pingerino)
         {
@@ -602,111 +593,123 @@ namespace Pingerino
         // Method to update the jitter values list
         private void UpdateJitterValues(double jitter)
         {
-            jitterValues.Add(jitter);
+            lock (lockObject)
+            {
+                jitterValues.Add(jitter);
+            }
         }
 
         // Method to update the packet loss values list
         private void UpdatePacketLossValues(double packetLoss)
         {
-            packetLossValues.Add(packetLoss);
+            lock (lockObject)
+            {
+                packetLossValues.Add(packetLoss);
+            }
         }
 
         // Method to calculate and update Max, Average, and Minimum jitter values
         private void UpdateJitterStatistics()
         {
-            List<double> jitterCopy = new List<double>(jitterValues);
-
-            if (jitterCopy.Count > 0)
+            lock (lockObject)
             {
-                double maxJitter = jitterCopy.Max();
-                double minJitter = jitterCopy.Min();
-                double avgJitter = jitterCopy.Average();
+                List<double> jitterCopy = new List<double>(jitterValues);
 
-                if (TextBoxMaxJitter.InvokeRequired)
+                if (jitterCopy.Count > 0)
                 {
-                    this.Invoke((MethodInvoker)delegate
+                    double maxJitter = jitterCopy.Max();
+                    double minJitter = jitterCopy.Min();
+                    double avgJitter = jitterCopy.Average();
+
+                    if (TextBoxMaxJitter.InvokeRequired)
+                    {
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            TextBoxMaxJitter.Text = $"{maxJitter:F0} ms";
+                        });
+                    }
+                    else
                     {
                         TextBoxMaxJitter.Text = $"{maxJitter:F0} ms";
-                    });
-                }
-                else
-                {
-                    TextBoxMaxJitter.Text = $"{maxJitter:F0} ms";
-                }
+                    }
 
-                if (TextBoxMinJitter.InvokeRequired)
-                {
-                    this.Invoke((MethodInvoker)delegate
+                    if (TextBoxMinJitter.InvokeRequired)
+                    {
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            TextBoxMinJitter.Text = $"{minJitter:F0} ms";
+                        });
+                    }
+                    else
                     {
                         TextBoxMinJitter.Text = $"{minJitter:F0} ms";
-                    });
-                }
-                else
-                {
-                    TextBoxMinJitter.Text = $"{minJitter:F0} ms";
-                }
+                    }
 
-                if (TextBoxAvgJitter.InvokeRequired)
-                {
-                    this.Invoke((MethodInvoker)delegate
+                    if (TextBoxAvgJitter.InvokeRequired)
+                    {
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            TextBoxAvgJitter.Text = $"{avgJitter:F0} ms";
+                        });
+                    }
+                    else
                     {
                         TextBoxAvgJitter.Text = $"{avgJitter:F0} ms";
-                    });
-                }
-                else
-                {
-                    TextBoxAvgJitter.Text = $"{avgJitter:F0} ms";
+                    }
+
                 }
             }
-        }
 
+        }
 
         // Method to calculate and update Max, Average, and Minimum packet loss values
         private void UpdatePacketLossStatistics()
         {
-            if (packetLossValues.Count > 0)
+            lock (lockObject)
             {
-                double maxPacketLoss = packetLossValues.Max();
-                double minPacketLoss = packetLossValues.Min();
-                double avgPacketLoss = packetLossValues.Average();
-
-                // Update the respective Text Boxes with max, avg, and min packet loss values
-                if (TextBoxMaxLoss.InvokeRequired)
+                if (packetLossValues.Count > 0)
                 {
-                    this.Invoke((MethodInvoker)delegate
+                    double maxPacketLoss = packetLossValues.Max();
+                    double minPacketLoss = packetLossValues.Min();
+                    double avgPacketLoss = packetLossValues.Average();
+
+                    // Update the respective Text Boxes with max, avg, and min packet loss values
+                    if (TextBoxMaxLoss.InvokeRequired)
+                    {
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            TextBoxMaxLoss.Text = $"{maxPacketLoss:F0}%";
+                        });
+                    }
+                    else
                     {
                         TextBoxMaxLoss.Text = $"{maxPacketLoss:F0}%";
-                    });
-                }
-                else
-                {
-                    TextBoxMaxLoss.Text = $"{maxPacketLoss:F0}%";
-                }
+                    }
 
-                if (TextBoxMinLoss.InvokeRequired)
-                {
-                    this.Invoke((MethodInvoker)delegate
+                    if (TextBoxMinLoss.InvokeRequired)
+                    {
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            TextBoxMinLoss.Text = $"{minPacketLoss:F0}%";
+                        });
+                    }
+                    else
                     {
                         TextBoxMinLoss.Text = $"{minPacketLoss:F0}%";
-                    });
-                }
-                else
-                {
-                    TextBoxMinLoss.Text = $"{minPacketLoss:F0}%";
-                }
+                    }
 
-                if (TextBoxAvgLoss.InvokeRequired)
-                {
-                    this.Invoke((MethodInvoker)delegate
+                    if (TextBoxAvgLoss.InvokeRequired)
+                    {
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            TextBoxAvgLoss.Text = $"{avgPacketLoss:F0}%";
+                        });
+                    }
+                    else
                     {
                         TextBoxAvgLoss.Text = $"{avgPacketLoss:F0}%";
-                    });
+                    }
                 }
-                else
-                {
-                    TextBoxAvgLoss.Text = $"{avgPacketLoss:F0}%";
-                }
-
             }
         }
 
@@ -988,7 +991,7 @@ namespace Pingerino
                     }
                     catch
                     {
- 
+
                     }
 
                     // Update progress after each step

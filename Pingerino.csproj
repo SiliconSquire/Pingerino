@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{69F90891-89F7-4EDB-8C35-91D372E1F30C}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>Pingerino</RootNamespace>
     <AssemblyName>Pingerino</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>

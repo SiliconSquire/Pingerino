@@ -30,14 +30,20 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPinger));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
             this.textBoxInterval = new System.Windows.Forms.TextBox();
             this.COPYRIGHT = new System.Windows.Forms.TextBox();
             this.close = new System.Windows.Forms.Button();
@@ -56,50 +62,47 @@
             this.label3 = new System.Windows.Forms.Label();
             this.ButtonNetworkAdapters = new System.Windows.Forms.Button();
             this.buttonCleanTemp = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.ButtonMenu = new System.Windows.Forms.Button();
             this.ButtonCleanNetwork = new System.Windows.Forms.Button();
-            this.TextBoxAvgPing = new System.Windows.Forms.TextBox();
-            this.TextBoxMaxPing = new System.Windows.Forms.TextBox();
-            this.TextBoxMinPing = new System.Windows.Forms.TextBox();
             this.TextBoxMaxLoss = new System.Windows.Forms.TextBox();
             this.TextBoxMaxJitter = new System.Windows.Forms.TextBox();
             this.TextBoxAvgJitter = new System.Windows.Forms.TextBox();
             this.TextBoxAvgLoss = new System.Windows.Forms.TextBox();
             this.TextBoxMinLoss = new System.Windows.Forms.TextBox();
             this.TextBoxMinJitter = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewPing = new System.Windows.Forms.DataGridView();
+            this.MinPing = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AvgPing = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaxPing = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.LOGOCF)).BeginInit();
             this.panel1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPing)).BeginInit();
+            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxInterval
             // 
-            this.textBoxInterval.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBoxInterval.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxInterval.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.textBoxInterval.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxInterval.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxInterval.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.textBoxInterval.Location = new System.Drawing.Point(136, 41);
+            this.textBoxInterval.Location = new System.Drawing.Point(134, 47);
             this.textBoxInterval.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxInterval.MaxLength = 4;
             this.textBoxInterval.Name = "textBoxInterval";
-            this.textBoxInterval.Size = new System.Drawing.Size(172, 16);
+            this.textBoxInterval.Size = new System.Drawing.Size(178, 16);
             this.textBoxInterval.TabIndex = 2;
             this.textBoxInterval.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBoxInterval.TextChanged += new System.EventHandler(this.TextBoxInterval_TextChanged);
@@ -152,41 +155,41 @@
             // 
             // textBoxPacketLoss
             // 
-            this.textBoxPacketLoss.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBoxPacketLoss.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxPacketLoss.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.textBoxPacketLoss.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxPacketLoss.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxPacketLoss.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.textBoxPacketLoss.Location = new System.Drawing.Point(111, 6);
+            this.textBoxPacketLoss.Location = new System.Drawing.Point(122, 9);
             this.textBoxPacketLoss.Name = "textBoxPacketLoss";
             this.textBoxPacketLoss.ReadOnly = true;
-            this.textBoxPacketLoss.Size = new System.Drawing.Size(114, 16);
+            this.textBoxPacketLoss.Size = new System.Drawing.Size(54, 16);
             this.textBoxPacketLoss.TabIndex = 33;
             this.textBoxPacketLoss.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // textBoxJitter
             // 
-            this.textBoxJitter.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBoxJitter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxJitter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.textBoxJitter.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxJitter.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxJitter.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.textBoxJitter.Location = new System.Drawing.Point(111, 6);
+            this.textBoxJitter.Location = new System.Drawing.Point(122, 42);
             this.textBoxJitter.Name = "textBoxJitter";
             this.textBoxJitter.ReadOnly = true;
-            this.textBoxJitter.Size = new System.Drawing.Size(114, 16);
+            this.textBoxJitter.Size = new System.Drawing.Size(54, 16);
             this.textBoxJitter.TabIndex = 34;
             this.textBoxJitter.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBoxJitter.TextChanged += new System.EventHandler(this.TextBoxJitter_TextChanged);
             // 
             // labelPacketLoss
             // 
-            this.labelPacketLoss.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelPacketLoss.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.labelPacketLoss.AutoSize = true;
             this.labelPacketLoss.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPacketLoss.Location = new System.Drawing.Point(6, 5);
+            this.labelPacketLoss.Location = new System.Drawing.Point(5, 8);
             this.labelPacketLoss.Name = "labelPacketLoss";
-            this.labelPacketLoss.Size = new System.Drawing.Size(96, 18);
+            this.labelPacketLoss.Size = new System.Drawing.Size(109, 18);
             this.labelPacketLoss.TabIndex = 35;
             this.labelPacketLoss.Text = "PacketLoss:";
             this.labelPacketLoss.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -194,12 +197,12 @@
             // 
             // labelJitter
             // 
-            this.labelJitter.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelJitter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.labelJitter.AutoSize = true;
             this.labelJitter.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelJitter.Location = new System.Drawing.Point(22, 5);
+            this.labelJitter.Location = new System.Drawing.Point(5, 41);
             this.labelJitter.Name = "labelJitter";
-            this.labelJitter.Size = new System.Drawing.Size(64, 18);
+            this.labelJitter.Size = new System.Drawing.Size(109, 18);
             this.labelJitter.TabIndex = 36;
             this.labelJitter.Text = "Jitter:";
             this.labelJitter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -208,18 +211,18 @@
             // ipAddress
             // 
             this.ipAddress.AllowInternalTab = false;
-            this.ipAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ipAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ipAddress.AutoHeight = true;
             this.ipAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.ipAddress.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ipAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ipAddress.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.ipAddress.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ipAddress.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.ipAddress.Location = new System.Drawing.Point(135, 6);
-            this.ipAddress.MinimumSize = new System.Drawing.Size(126, 23);
+            this.ipAddress.Location = new System.Drawing.Point(133, 10);
+            this.ipAddress.MinimumSize = new System.Drawing.Size(120, 18);
             this.ipAddress.Name = "ipAddress";
             this.ipAddress.ReadOnly = false;
-            this.ipAddress.Size = new System.Drawing.Size(174, 23);
+            this.ipAddress.Size = new System.Drawing.Size(180, 18);
             this.ipAddress.TabIndex = 37;
             this.ipAddress.Text = "...";
             this.ipAddress.Click += new System.EventHandler(this.IpAddress_Click);
@@ -227,25 +230,25 @@
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label1.Location = new System.Drawing.Point(18, 8);
+            this.label1.Location = new System.Drawing.Point(5, 2);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 18);
+            this.label1.Size = new System.Drawing.Size(120, 34);
             this.label1.TabIndex = 38;
             this.label1.Text = "IP Address:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 40);
+            this.label2.Location = new System.Drawing.Point(5, 38);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 18);
+            this.label2.Size = new System.Drawing.Size(120, 35);
             this.label2.TabIndex = 39;
             this.label2.Text = "Interval (MS):";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -328,10 +331,12 @@
             // 
             // ButtonNetworkAdapters
             // 
-            this.ButtonNetworkAdapters.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ButtonNetworkAdapters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonNetworkAdapters.AutoSize = true;
             this.ButtonNetworkAdapters.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ButtonNetworkAdapters.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.ButtonNetworkAdapters.FlatAppearance.BorderSize = 0;
+            this.ButtonNetworkAdapters.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonNetworkAdapters.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonNetworkAdapters.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.ButtonNetworkAdapters.Location = new System.Drawing.Point(5, 5);
@@ -344,42 +349,26 @@
             // 
             // buttonCleanTemp
             // 
-            this.buttonCleanTemp.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.buttonCleanTemp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonCleanTemp.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.buttonCleanTemp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.buttonCleanTemp.FlatAppearance.BorderSize = 0;
+            this.buttonCleanTemp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCleanTemp.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCleanTemp.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.buttonCleanTemp.Location = new System.Drawing.Point(160, 5);
+            this.buttonCleanTemp.Location = new System.Drawing.Point(159, 5);
             this.buttonCleanTemp.Name = "buttonCleanTemp";
-            this.buttonCleanTemp.Size = new System.Drawing.Size(145, 27);
+            this.buttonCleanTemp.Size = new System.Drawing.Size(147, 27);
             this.buttonCleanTemp.TabIndex = 43;
             this.buttonCleanTemp.Text = "Kill N Clean";
             this.buttonCleanTemp.UseVisualStyleBackColor = false;
             this.buttonCleanTemp.Click += new System.EventHandler(this.ButtonCleanTemp_Click);
             // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.labelPacketLoss, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.textBoxPacketLoss, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(457, 47);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(231, 29);
-            this.tableLayoutPanel1.TabIndex = 44;
-            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel2.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
+            this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
@@ -387,24 +376,26 @@
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.textBoxInterval, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(12, 47);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(9, 34);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(315, 67);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(315, 75);
             this.tableLayoutPanel2.TabIndex = 45;
             // 
             // ButtonMenu
             // 
-            this.ButtonMenu.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ButtonMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonMenu.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ButtonMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.ButtonMenu.FlatAppearance.BorderSize = 0;
+            this.ButtonMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonMenu.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonMenu.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.ButtonMenu.Location = new System.Drawing.Point(160, 42);
+            this.ButtonMenu.Location = new System.Drawing.Point(159, 42);
             this.ButtonMenu.Name = "ButtonMenu";
-            this.ButtonMenu.Size = new System.Drawing.Size(145, 27);
+            this.ButtonMenu.Size = new System.Drawing.Size(147, 27);
             this.ButtonMenu.TabIndex = 43;
             this.ButtonMenu.Text = "Stuff";
             this.ButtonMenu.UseVisualStyleBackColor = false;
@@ -412,182 +403,99 @@
             // 
             // ButtonCleanNetwork
             // 
-            this.ButtonCleanNetwork.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ButtonCleanNetwork.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonCleanNetwork.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ButtonCleanNetwork.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.ButtonCleanNetwork.FlatAppearance.BorderSize = 0;
+            this.ButtonCleanNetwork.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonCleanNetwork.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonCleanNetwork.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.ButtonCleanNetwork.Location = new System.Drawing.Point(5, 42);
             this.ButtonCleanNetwork.Name = "ButtonCleanNetwork";
-            this.ButtonCleanNetwork.Size = new System.Drawing.Size(145, 27);
+            this.ButtonCleanNetwork.Size = new System.Drawing.Size(146, 27);
             this.ButtonCleanNetwork.TabIndex = 42;
             this.ButtonCleanNetwork.Text = "Reset Network";
             this.ButtonCleanNetwork.UseVisualStyleBackColor = false;
             this.ButtonCleanNetwork.Click += new System.EventHandler(this.ButtonCleanNetwork_Click);
             // 
-            // TextBoxAvgPing
-            // 
-            this.TextBoxAvgPing.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.TextBoxAvgPing.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.TextBoxAvgPing.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxAvgPing.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.TextBoxAvgPing.Location = new System.Drawing.Point(78, 146);
-            this.TextBoxAvgPing.Name = "TextBoxAvgPing";
-            this.TextBoxAvgPing.Size = new System.Drawing.Size(60, 23);
-            this.TextBoxAvgPing.TabIndex = 48;
-            this.TextBoxAvgPing.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // TextBoxMaxPing
-            // 
-            this.TextBoxMaxPing.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.TextBoxMaxPing.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.TextBoxMaxPing.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxMaxPing.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.TextBoxMaxPing.Location = new System.Drawing.Point(144, 146);
-            this.TextBoxMaxPing.Name = "TextBoxMaxPing";
-            this.TextBoxMaxPing.Size = new System.Drawing.Size(60, 23);
-            this.TextBoxMaxPing.TabIndex = 49;
-            this.TextBoxMaxPing.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // TextBoxMinPing
-            // 
-            this.TextBoxMinPing.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.TextBoxMinPing.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.TextBoxMinPing.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxMinPing.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.TextBoxMinPing.Location = new System.Drawing.Point(12, 146);
-            this.TextBoxMinPing.Name = "TextBoxMinPing";
-            this.TextBoxMinPing.Size = new System.Drawing.Size(60, 23);
-            this.TextBoxMinPing.TabIndex = 47;
-            this.TextBoxMinPing.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // TextBoxMaxLoss
             // 
-            this.TextBoxMaxLoss.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.TextBoxMaxLoss.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxMaxLoss.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.TextBoxMaxLoss.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxMaxLoss.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxMaxLoss.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.TextBoxMaxLoss.Location = new System.Drawing.Point(613, 82);
+            this.TextBoxMaxLoss.Location = new System.Drawing.Point(308, 9);
             this.TextBoxMaxLoss.Name = "TextBoxMaxLoss";
-            this.TextBoxMaxLoss.Size = new System.Drawing.Size(60, 23);
+            this.TextBoxMaxLoss.Size = new System.Drawing.Size(56, 16);
             this.TextBoxMaxLoss.TabIndex = 52;
             this.TextBoxMaxLoss.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // TextBoxMaxJitter
             // 
-            this.TextBoxMaxJitter.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.TextBoxMaxJitter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxMaxJitter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.TextBoxMaxJitter.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxMaxJitter.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxMaxJitter.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.TextBoxMaxJitter.Location = new System.Drawing.Point(613, 146);
+            this.TextBoxMaxJitter.Location = new System.Drawing.Point(308, 42);
             this.TextBoxMaxJitter.Name = "TextBoxMaxJitter";
-            this.TextBoxMaxJitter.Size = new System.Drawing.Size(60, 23);
+            this.TextBoxMaxJitter.Size = new System.Drawing.Size(56, 16);
             this.TextBoxMaxJitter.TabIndex = 52;
             this.TextBoxMaxJitter.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // TextBoxAvgJitter
             // 
-            this.TextBoxAvgJitter.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.TextBoxAvgJitter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxAvgJitter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.TextBoxAvgJitter.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxAvgJitter.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxAvgJitter.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.TextBoxAvgJitter.Location = new System.Drawing.Point(547, 146);
+            this.TextBoxAvgJitter.Location = new System.Drawing.Point(246, 42);
             this.TextBoxAvgJitter.Name = "TextBoxAvgJitter";
-            this.TextBoxAvgJitter.Size = new System.Drawing.Size(60, 23);
+            this.TextBoxAvgJitter.Size = new System.Drawing.Size(54, 16);
             this.TextBoxAvgJitter.TabIndex = 51;
             this.TextBoxAvgJitter.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // TextBoxAvgLoss
             // 
-            this.TextBoxAvgLoss.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.TextBoxAvgLoss.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxAvgLoss.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.TextBoxAvgLoss.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxAvgLoss.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxAvgLoss.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.TextBoxAvgLoss.Location = new System.Drawing.Point(547, 82);
+            this.TextBoxAvgLoss.Location = new System.Drawing.Point(246, 9);
             this.TextBoxAvgLoss.Name = "TextBoxAvgLoss";
-            this.TextBoxAvgLoss.Size = new System.Drawing.Size(60, 23);
+            this.TextBoxAvgLoss.Size = new System.Drawing.Size(54, 16);
             this.TextBoxAvgLoss.TabIndex = 51;
             this.TextBoxAvgLoss.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // TextBoxMinLoss
             // 
-            this.TextBoxMinLoss.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.TextBoxMinLoss.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxMinLoss.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.TextBoxMinLoss.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxMinLoss.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxMinLoss.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.TextBoxMinLoss.Location = new System.Drawing.Point(481, 82);
+            this.TextBoxMinLoss.Location = new System.Drawing.Point(184, 9);
             this.TextBoxMinLoss.Name = "TextBoxMinLoss";
-            this.TextBoxMinLoss.Size = new System.Drawing.Size(60, 23);
+            this.TextBoxMinLoss.Size = new System.Drawing.Size(54, 16);
             this.TextBoxMinLoss.TabIndex = 50;
             this.TextBoxMinLoss.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // TextBoxMinJitter
             // 
-            this.TextBoxMinJitter.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.TextBoxMinJitter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxMinJitter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.TextBoxMinJitter.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxMinJitter.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxMinJitter.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.TextBoxMinJitter.Location = new System.Drawing.Point(481, 146);
+            this.TextBoxMinJitter.Location = new System.Drawing.Point(184, 42);
             this.TextBoxMinJitter.Name = "TextBoxMinJitter";
-            this.TextBoxMinJitter.Size = new System.Drawing.Size(60, 23);
+            this.TextBoxMinJitter.Size = new System.Drawing.Size(54, 16);
             this.TextBoxMinJitter.TabIndex = 50;
             this.TextBoxMinJitter.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TextBoxMinJitter.TextChanged += new System.EventHandler(this.TextBoxMinJitter_TextChanged);
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tableLayoutPanel4.AutoSize = true;
-            this.tableLayoutPanel4.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel4.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
-            this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.05263F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.94737F));
-            this.tableLayoutPanel4.Controls.Add(this.labelJitter, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.textBoxJitter, 1, 0);
-            this.tableLayoutPanel4.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(457, 111);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(231, 29);
-            this.tableLayoutPanel4.TabIndex = 53;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(155, 125);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 18);
-            this.label4.TabIndex = 55;
-            this.label4.Text = "Max.";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(89, 125);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 18);
-            this.label5.TabIndex = 56;
-            this.label5.Text = "Avg.";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(23, 125);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 18);
-            this.label6.TabIndex = 57;
-            this.label6.Text = "Min.";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // contextMenuStrip1
             // 
@@ -607,7 +515,7 @@
             this.tableLayoutPanel3.Controls.Add(this.ButtonCleanNetwork, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.ButtonNetworkAdapters, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.ButtonMenu, 1, 1);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(12, 608);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(377, 34);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -619,70 +527,73 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            dataGridViewCellStyle2.NullValue = null;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            dataGridViewCellStyle16.NullValue = null;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Time,
             this.Status,
             this.RTT});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle20;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridView1.Location = new System.Drawing.Point(9, 175);
+            this.dataGridView1.Location = new System.Drawing.Point(9, 115);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle21;
             this.dataGridView1.RowHeadersVisible = false;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle22;
             this.dataGridView1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridView1.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.Black;
-            this.dataGridView1.Size = new System.Drawing.Size(679, 427);
+            this.dataGridView1.Size = new System.Drawing.Size(679, 487);
             this.dataGridView1.TabIndex = 59;
             this.dataGridView1.TabStop = false;
             // 
             // Time
             // 
             this.Time.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Time.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Time.DefaultCellStyle = dataGridViewCellStyle17;
             this.Time.HeaderText = "Time";
             this.Time.Name = "Time";
             this.Time.ReadOnly = true;
@@ -691,10 +602,10 @@
             // Status
             // 
             this.Status.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Status.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Status.DefaultCellStyle = dataGridViewCellStyle18;
             this.Status.HeaderText = "Status";
             this.Status.Name = "Status";
             this.Status.ReadOnly = true;
@@ -702,12 +613,125 @@
             // RTT
             // 
             this.RTT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.RTT.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.RTT.DefaultCellStyle = dataGridViewCellStyle19;
             this.RTT.HeaderText = "RTT";
             this.RTT.Name = "RTT";
             this.RTT.ReadOnly = true;
             this.RTT.Width = 62;
+            // 
+            // dataGridViewPing
+            // 
+            this.dataGridViewPing.AllowUserToAddRows = false;
+            this.dataGridViewPing.AllowUserToDeleteRows = false;
+            this.dataGridViewPing.AllowUserToResizeColumns = false;
+            this.dataGridViewPing.AllowUserToResizeRows = false;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle23.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewPing.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle23;
+            this.dataGridViewPing.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.dataGridViewPing.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            dataGridViewCellStyle24.NullValue = null;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewPing.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            this.dataGridViewPing.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPing.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MinPing,
+            this.AvgPing,
+            this.MaxPing});
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewPing.DefaultCellStyle = dataGridViewCellStyle26;
+            this.dataGridViewPing.EnableHeadersVisualStyles = false;
+            this.dataGridViewPing.GridColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridViewPing.Location = new System.Drawing.Point(473, 605);
+            this.dataGridViewPing.Name = "dataGridViewPing";
+            this.dataGridViewPing.ReadOnly = true;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewPing.RowHeadersDefaultCellStyle = dataGridViewCellStyle27;
+            this.dataGridViewPing.RowHeadersVisible = false;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle28.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridViewPing.RowsDefaultCellStyle = dataGridViewCellStyle28;
+            this.dataGridViewPing.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewPing.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.Black;
+            this.dataGridViewPing.Size = new System.Drawing.Size(216, 51);
+            this.dataGridViewPing.TabIndex = 60;
+            this.dataGridViewPing.TabStop = false;
+            // 
+            // MinPing
+            // 
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.MinPing.DefaultCellStyle = dataGridViewCellStyle25;
+            this.MinPing.HeaderText = "Min.";
+            this.MinPing.Name = "MinPing";
+            this.MinPing.ReadOnly = true;
+            this.MinPing.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.MinPing.Width = 71;
+            // 
+            // AvgPing
+            // 
+            this.AvgPing.HeaderText = "Avg.";
+            this.AvgPing.Name = "AvgPing";
+            this.AvgPing.ReadOnly = true;
+            this.AvgPing.Width = 71;
+            // 
+            // MaxPing
+            // 
+            this.MaxPing.HeaderText = "Max.";
+            this.MaxPing.Name = "MaxPing";
+            this.MaxPing.ReadOnly = true;
+            this.MaxPing.Width = 71;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel5.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
+            this.tableLayoutPanel5.ColumnCount = 5;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
+            this.tableLayoutPanel5.Controls.Add(this.labelJitter, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.labelPacketLoss, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.textBoxPacketLoss, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.textBoxJitter, 1, 1);
+            this.tableLayoutPanel5.Controls.Add(this.TextBoxAvgLoss, 3, 0);
+            this.tableLayoutPanel5.Controls.Add(this.TextBoxMaxLoss, 4, 0);
+            this.tableLayoutPanel5.Controls.Add(this.TextBoxMaxJitter, 4, 1);
+            this.tableLayoutPanel5.Controls.Add(this.TextBoxAvgJitter, 3, 1);
+            this.tableLayoutPanel5.Controls.Add(this.TextBoxMinJitter, 2, 1);
+            this.tableLayoutPanel5.Controls.Add(this.TextBoxMinLoss, 2, 0);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(12, 608);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(369, 68);
+            this.tableLayoutPanel5.TabIndex = 61;
             // 
             // FormPinger
             // 
@@ -715,25 +739,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(700, 700);
+            this.Controls.Add(this.tableLayoutPanel5);
+            this.Controls.Add(this.dataGridViewPing);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel2);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.tableLayoutPanel4);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.TextBoxAvgJitter);
-            this.Controls.Add(this.TextBoxMaxJitter);
-            this.Controls.Add(this.TextBoxAvgLoss);
-            this.Controls.Add(this.TextBoxMinJitter);
-            this.Controls.Add(this.TextBoxMaxLoss);
-            this.Controls.Add(this.TextBoxMinLoss);
-            this.Controls.Add(this.TextBoxAvgPing);
-            this.Controls.Add(this.TextBoxMaxPing);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.TextBoxMinPing);
             this.Controls.Add(this.LOGOCF);
-            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.COPYRIGHT);
             this.Font = new System.Drawing.Font("Cascadia Mono SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ActiveCaption;
@@ -741,20 +753,19 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormPinger";
-            this.Text = "Pingerino";
+            this.Text = "   ";
             this.Load += new System.EventHandler(this.FormPinger_Load);
             ((System.ComponentModel.ISupportInitialize)(this.LOGOCF)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPing)).EndInit();
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -779,21 +790,13 @@
         private System.Windows.Forms.Button buttonCleanTemp;
         private System.Windows.Forms.TextBox TextBoxRAM;
         private System.Windows.Forms.TextBox TextBoxCPU;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.TextBox TextBoxAvgPing;
-        private System.Windows.Forms.TextBox TextBoxMaxPing;
-        private System.Windows.Forms.TextBox TextBoxMinPing;
         private System.Windows.Forms.TextBox TextBoxMaxLoss;
         private System.Windows.Forms.TextBox TextBoxMaxJitter;
         private System.Windows.Forms.TextBox TextBoxAvgJitter;
         private System.Windows.Forms.TextBox TextBoxAvgLoss;
         private System.Windows.Forms.TextBox TextBoxMinLoss;
         private System.Windows.Forms.TextBox TextBoxMinJitter;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button ButtonMenu;
         private System.Windows.Forms.Button ButtonCleanNetwork;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
@@ -802,5 +805,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Time;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.DataGridViewTextBoxColumn RTT;
+        private System.Windows.Forms.DataGridView dataGridViewPing;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MinPing;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AvgPing;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaxPing;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
     }
 }
