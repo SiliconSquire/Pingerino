@@ -27,7 +27,7 @@ namespace Pingerino
         private readonly System.Timers.Timer cpuTimer;
         private readonly System.Timers.Timer ramTimer;
         private readonly System.Threading.Timer pingTimer;
-        private string currentIpAddress = "8.8.8.8";
+        private string currentIpAddress = Properties.Settings.Default.LastUsedIpAddress;
         private readonly List<long> pingRoundTripTimes = new List<long>();
         private readonly List<double> packetLossValues = new List<double>();
         private readonly List<double> jitterValues = new List<double>();
@@ -37,8 +37,7 @@ namespace Pingerino
         private readonly WinForms.Button ButtonCleanTemp;
         private readonly BackgroundWorker networkWorker;
         private readonly WinForms.ProgressBar progressBarNetwork;
-        private const int MaxLines = 999;
-        private readonly CircularBuffer<string> outputLines = new CircularBuffer<string>(MaxLines);
+        private readonly List<string> outputLines = new List<string>();
 
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
@@ -152,9 +151,11 @@ namespace Pingerino
 
         private void InitializeContextMenu()
         {
-            contextMenuStrip1 = new ContextMenuStrip(); // Change this line
-            contextMenuStrip1.Items.Add("[1] Run with Windows");
+            contextMenuStrip1 = new ContextMenuStrip();
+            contextMenuStrip1.Items.Add("[1] Show Network Details");
             contextMenuStrip1.Items.Add("[2] Auto Ping");
+            contextMenuStrip1.Items.Add("[3] Run with Windows");
+
 
             ButtonMenu.Click += (sender, e) =>
             {
@@ -162,8 +163,9 @@ namespace Pingerino
             };
 
             // Attach event handlers to the menu items
-            contextMenuStrip1.Items[0].Click += Option1_Click;
-            contextMenuStrip1.Items[1].Click += Option2_Click;
+            contextMenuStrip1.Items[0].Click += ShowNetworkDetails_Click;
+            contextMenuStrip1.Items[1].Click += Option1_Click;
+            contextMenuStrip1.Items[2].Click += Option2_Click;
         }
 
 
@@ -186,12 +188,44 @@ namespace Pingerino
         }
 
 
+        private void ShowNetworkDetails_Click(object sender, EventArgs e)
+        {
+            string details = "";
 
+            foreach (NetworkInterface nic in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (nic.NetworkInterfaceType != NetworkInterfaceType.Loopback && nic.OperationalStatus == OperationalStatus.Up)
+                {
+                    IPInterfaceProperties properties = nic.GetIPProperties();
+
+                    details += $"Description: {nic.Description}\n";
+                    details += $"Physical Address: {nic.GetPhysicalAddress()}\n";
+                    details += $"DHCP Enabled: {(properties.GetIPv4Properties().IsDhcpEnabled ? "Yes" : "No")}\n";
+
+                    foreach (UnicastIPAddressInformation ip in properties.UnicastAddresses)
+                    {
+                        if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork) // IPv4 addresses only
+                        {
+                            details += $"IPv4 Address: {ip.Address}\n";
+                            details += $"IPv4 Subnet Mask: {ip.IPv4Mask}\n";
+                        }
+                    }
+
+                    foreach (GatewayIPAddressInformation gateway in properties.GatewayAddresses)
+                    {
+                        details += $"IPv4 Default Gateway: {gateway.Address}\n";
+                    }
+
+                    details += $"IPv4 DHCP Server: {properties.DhcpServerAddresses.FirstOrDefault()}\n";
+                    details += $"IPv4 DNS Servers: {string.Join(", ", properties.DnsAddresses)}\n";
+                }
+            }
+
+            MessageBox.Show(details);
+        }
 
         private void FormPinger_Load(object sender, EventArgs e)
-        {
-            // Update network statistics when the app is opened
-            //      UpdateNetworkStatistics();
+        {   
 
             // Load the form's position
             if (Properties.Settings.Default.FormPosition != null)
@@ -312,8 +346,10 @@ namespace Pingerino
                 else
                 {
                     dataGridView1.Rows.Add(new object[] { Time, Status, RTT });
-                    outputLines.Add($"{Time} - {Status} - {RTT}"); // Store to CircularBuffer
+                    outputLines.Add($"{Time} - {Status} - {RTT}");
                     dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
+
+
                 }
             }
         }
@@ -341,57 +377,44 @@ namespace Pingerino
                     row.Cells["Time"].Value = Time;
                     row.Cells["Status"].Value = Status;
                     row.Cells["RTT"].Value = RTT;
+
                 }
                 else
                 {
                     dataGridView1.Rows.Add(new object[] { Time, message, string.Empty });
                 }
+
             }
         }
 
-        public class CircularBuffer<T>
-        {
-            private readonly T[] buffer;
-            private int head;
-            private int tail;
-
-            public int MaxSize { get; private set; }
-
-            public CircularBuffer(int size)
-            {
-                buffer = new T[size];
-                MaxSize = size;
-            }
-
-            public void Add(T item)
-            {
-                buffer[head] = item;
-                head = (head + 1) % MaxSize;
-                if (head == tail)
-                {
-                    tail = (tail + 1) % MaxSize;  // remove oldest item
-                }
-            }
-
-            public T[] ToArray()
-            {
-                if (head < tail)
-                {
-                    return buffer.Skip(tail).Concat(buffer.Take(head)).ToArray();
-                }
-                else
-                {
-                    return buffer.Skip(tail).Take(head - tail).ToArray();
-                }
-            }
-        }
-
+ 
 
         private void TextBoxInterval_KeyDown(object sender, KeyEventArgs e)
         {
             // Check if the user pressed the Enter key
             if (e.KeyCode == Keys.Enter)
             {
+                // Clear collections 
+                pingRoundTripTimes.Clear();
+                jitterValues.Clear();
+                packetLossValues.Clear();
+
+                // Reset statistics display
+                if (dataGridViewPing.Rows.Count > 0)
+                {
+                    dataGridViewPing.Rows[0].Cells["MaxPing"].Value = "0 ms";
+                    dataGridViewPing.Rows[0].Cells["MinPing"].Value = "0 ms";
+                    dataGridViewPing.Rows[0].Cells["AvgPing"].Value = "0 ms";
+                }
+
+                TextBoxMaxJitter.Text = "0 ms";
+                TextBoxMinJitter.Text = "0 ms";
+                TextBoxAvgJitter.Text = "0 ms";
+
+                TextBoxMaxLoss.Text = "0%";
+                TextBoxMinLoss.Text = "0%";
+                TextBoxAvgLoss.Text = "0%";
+
                 // Parse the interval from the TextBox control
                 if (int.TryParse(textBoxInterval.Text, out int interval))
                 {
@@ -406,8 +429,32 @@ namespace Pingerino
             // Check if the user pressed the Enter key
             if (e.KeyCode == Keys.Enter)
             {
+                // Clear collections 
+                pingRoundTripTimes.Clear();
+                jitterValues.Clear();
+                packetLossValues.Clear();
+
+                // Reset statistics display
+                if (dataGridViewPing.Rows.Count > 0)
+                {
+                    dataGridViewPing.Rows[0].Cells["MaxPing"].Value = "0 ms";
+                    dataGridViewPing.Rows[0].Cells["MinPing"].Value = "0 ms";
+                    dataGridViewPing.Rows[0].Cells["AvgPing"].Value = "0 ms";
+                }
+
+                TextBoxMaxJitter.Text = "0 ms";
+                TextBoxMinJitter.Text = "0 ms";
+                TextBoxAvgJitter.Text = "0 ms";
+
+                TextBoxMaxLoss.Text = "0%";
+                TextBoxMinLoss.Text = "0%";
+                TextBoxAvgLoss.Text = "0%";
+
                 // Change the IP address to ping
                 currentIpAddress = ipAddress.Text;
+                // Save the updated IP address to settings
+                Properties.Settings.Default.LastUsedIpAddress = currentIpAddress;
+                Properties.Settings.Default.Save();
             }
         }
 
@@ -508,6 +555,9 @@ namespace Pingerino
 
                         // Resize the row
                         dataGridViewPing.AutoResizeRow(0);
+
+                        dataGridViewPing.ClearSelection();
+                        dataGridViewPing.CurrentCell = null;
                     });
                 }
             }
@@ -519,7 +569,7 @@ namespace Pingerino
         private void UpdateOption1Text(string Pingerino)
         {
             bool isTaskInScheduler = IsTaskInScheduler(Pingerino);
-            contextMenuStrip1.Items[0].Text = isTaskInScheduler ? "[1] Run with Windows ✔" : "[1] Run with Windows";
+            contextMenuStrip1.Items[2].Text = isTaskInScheduler ? "[1] Run with Windows ✔" : "[1] Run with Windows";
         }
 
 
@@ -763,11 +813,6 @@ namespace Pingerino
             // Placeholder
         }
 
-        private void Close_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
         private void Label1_Click(object sender, EventArgs e)
         {
             // Placeholder
@@ -778,15 +823,7 @@ namespace Pingerino
             // Placeholder
         }
 
-        private void Close_MouseEnter(object sender, EventArgs e)
-        {
-            close.BackColor = Color.Red;
-        }
 
-        private void Close_MouseLeave(object sender, EventArgs e)
-        {
-            close.BackColor = Color.Transparent;
-        }
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -808,10 +845,6 @@ namespace Pingerino
             SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
         }
 
-        private void Bt_mini_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
 
         private void Label2_Click(object sender, EventArgs e)
         {
@@ -1064,6 +1097,49 @@ namespace Pingerino
             contextMenuStrip1.Show(ButtonMenu, 0, ButtonMenu.Height);
         }
 
+
+
+
         #endregion
+
+        private void ButtonExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void ButtonMinimize_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void ButtonClearAll_Click(object sender, EventArgs e)
+        {
+            // 1. Clear the underlying data lists
+            pingRoundTripTimes.Clear();
+            packetLossValues.Clear();
+            jitterValues.Clear();
+            outputLines.Clear();
+
+            // 2. Clear UI elements
+            dataGridView1.Rows.Clear();
+
+            // 3. Optionally, clear statistics shown in UI:
+            // Reset any displayed ping, jitter, or packet loss statistics (depending on your UI structure).
+            if (dataGridViewPing.Rows.Count > 0)
+            {
+                dataGridViewPing.Rows[0].Cells["MaxPing"].Value = "0 ms";
+                dataGridViewPing.Rows[0].Cells["MinPing"].Value = "0 ms";
+                dataGridViewPing.Rows[0].Cells["AvgPing"].Value = "0 ms";
+            }
+
+            TextBoxMaxJitter.Text = "0 ms";
+            TextBoxMinJitter.Text = "0 ms";
+            TextBoxAvgJitter.Text = "0 ms";
+
+            TextBoxMaxLoss.Text = "0%";
+            TextBoxMinLoss.Text = "0%";
+            TextBoxAvgLoss.Text = "0%";
+        }
+
     }
 }

@@ -70,5 +70,17 @@ namespace Pingerino.Properties {
                 this["AutoPingEnabled"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8.8.8.8")]
+        public string LastUsedIpAddress {
+            get {
+                return ((string)(this["LastUsedIpAddress"]));
+            }
+            set {
+                this["LastUsedIpAddress"] = value;
+            }
+        }
     }
 }

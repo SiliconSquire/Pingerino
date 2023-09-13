@@ -14,5 +14,8 @@
     <Setting Name="AutoPingEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="LastUsedIpAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">8.8.8.8</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
