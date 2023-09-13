@@ -153,7 +153,7 @@ namespace Pingerino
         {
             contextMenuStrip1 = new ContextMenuStrip();
             contextMenuStrip1.Items.Add("[1] Show Network Details");
-            contextMenuStrip1.Items.Add("[2] Auto Ping");
+            contextMenuStrip1.Items.Add("[2] Auto Ping ✔");
             contextMenuStrip1.Items.Add("[3] Run with Windows");
 
 
@@ -243,11 +243,11 @@ namespace Pingerino
             if (autoPingEnabled)
             {
                 StartAutoUpdate(); // Start auto-pinging if it's enabled
-                contextMenuStrip1.Items[1].Text = "[2] Auto Ping ✔";
+                contextMenuStrip1.Items[2].Text = "[2] Auto Ping ✔";
             }
 
             {
-                UpdateOption1Text("Pingerino");
+                UpdateOption2Text("Pingerino");
             }
 
         }
@@ -348,8 +348,6 @@ namespace Pingerino
                     dataGridView1.Rows.Add(new object[] { Time, Status, RTT });
                     outputLines.Add($"{Time} - {Status} - {RTT}");
                     dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
-
-
                 }
             }
         }
@@ -400,11 +398,11 @@ namespace Pingerino
                 packetLossValues.Clear();
 
                 // Reset statistics display
-                if (dataGridViewPing.Rows.Count > 0)
+                if (dataGridView1.Rows.Count > 0)
                 {
-                    dataGridViewPing.Rows[0].Cells["MaxPing"].Value = "0 ms";
-                    dataGridViewPing.Rows[0].Cells["MinPing"].Value = "0 ms";
-                    dataGridViewPing.Rows[0].Cells["AvgPing"].Value = "0 ms";
+                    dataGridView1.Rows[0].Cells["MaxPing"].Value = "0 ms";
+                    dataGridView1.Rows[0].Cells["MinPing"].Value = "0 ms";
+                    dataGridView1.Rows[0].Cells["AvgPing"].Value = "0 ms";
                 }
 
                 TextBoxMaxJitter.Text = "0 ms";
@@ -435,11 +433,11 @@ namespace Pingerino
                 packetLossValues.Clear();
 
                 // Reset statistics display
-                if (dataGridViewPing.Rows.Count > 0)
+                if (dataGridView1.Rows.Count > 0)
                 {
-                    dataGridViewPing.Rows[0].Cells["MaxPing"].Value = "0 ms";
-                    dataGridViewPing.Rows[0].Cells["MinPing"].Value = "0 ms";
-                    dataGridViewPing.Rows[0].Cells["AvgPing"].Value = "0 ms";
+                    dataGridView1.Rows[0].Cells["MaxPing"].Value = "0 ms";
+                    dataGridView1.Rows[0].Cells["MinPing"].Value = "0 ms";
+                    dataGridView1.Rows[0].Cells["AvgPing"].Value = "0 ms";
                 }
 
                 TextBoxMaxJitter.Text = "0 ms";
@@ -526,38 +524,36 @@ namespace Pingerino
                 long minPing = pingRoundTripTimes.Min();
                 double avgPing = pingRoundTripTimes.Average();
 
-                if (!dataGridViewPing.InvokeRequired)
+                if (!dataGridView1.InvokeRequired)
                 {
                     // Update the row with stats
-                    if (dataGridViewPing.Rows.Count == 0)
+                    if (dataGridView1.Rows.Count == 0)
                     {
-                        dataGridViewPing.Rows.Add();
+                        dataGridView1.Rows.Add();
                     }
-                    dataGridViewPing.Rows[0].Cells["MaxPing"].Value = $"{maxPing} ms";
-                    dataGridViewPing.Rows[0].Cells["MinPing"].Value = $"{minPing} ms";
-                    dataGridViewPing.Rows[0].Cells["AvgPing"].Value = $"{avgPing:F0} ms";
+                    dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["MaxPing"].Value = $"{maxPing} ms";
+                    dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["MinPing"].Value = $"{minPing} ms";
+                    dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["AvgPing"].Value = $"{avgPing:F0} ms";
 
                     // Resize the row
-                    dataGridViewPing.AutoResizeRow(0);
+                    dataGridView1.AutoResizeRow(dataGridView1.Rows.Count - 1);
                 }
                 else
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
                         // Update the row with stats
-                        if (dataGridViewPing.Rows.Count == 0)
+                        if (dataGridView1.Rows.Count == 0)
                         {
-                            dataGridViewPing.Rows.Add();
+                            dataGridView1.Rows.Add();
                         }
-                        dataGridViewPing.Rows[0].Cells["MaxPing"].Value = $"{maxPing} ms";
-                        dataGridViewPing.Rows[0].Cells["MinPing"].Value = $"{minPing} ms";
-                        dataGridViewPing.Rows[0].Cells["AvgPing"].Value = $"{avgPing:F0} ms";
+                        dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["MaxPing"].Value = $"{maxPing} ms";
+                        dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["MinPing"].Value = $"{minPing} ms";
+                        dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["AvgPing"].Value = $"{avgPing:F0} ms";
 
                         // Resize the row
-                        dataGridViewPing.AutoResizeRow(0);
+                        dataGridView1.AutoResizeRow(dataGridView1.Rows.Count - 1);
 
-                        dataGridViewPing.ClearSelection();
-                        dataGridViewPing.CurrentCell = null;
                     });
                 }
             }
@@ -566,10 +562,11 @@ namespace Pingerino
 
 
 
-        private void UpdateOption1Text(string Pingerino)
+
+        private void UpdateOption2Text(string Pingerino)
         {
             bool isTaskInScheduler = IsTaskInScheduler(Pingerino);
-            contextMenuStrip1.Items[2].Text = isTaskInScheduler ? "[1] Run with Windows ✔" : "[1] Run with Windows";
+            contextMenuStrip1.Items[2].Text = isTaskInScheduler ? "[3] Run with Windows ✔" : "[3] Run with Windows";
         }
 
 
@@ -582,7 +579,7 @@ namespace Pingerino
             }
         }
 
-        private void Option1_Click(object sender, EventArgs e)
+        private void Option2_Click(object sender, EventArgs e)
         {
             using (TaskService ts = new TaskService())
             {
@@ -611,13 +608,13 @@ namespace Pingerino
                     ts.RootFolder.RegisterTaskDefinition(taskName, td, TaskCreation.CreateOrUpdate, currentUserName, null, TaskLogonType.InteractiveToken);
                 }
 
-                UpdateOption1Text(taskName);
+                UpdateOption2Text(taskName);
             }
         }
 
         private bool autoPingEnabled = false;
 
-        private void Option2_Click(object sender, EventArgs e)
+        private void Option1_Click(object sender, EventArgs e)
         {
             if (!autoPingEnabled)
             {
@@ -1125,11 +1122,11 @@ namespace Pingerino
 
             // 3. Optionally, clear statistics shown in UI:
             // Reset any displayed ping, jitter, or packet loss statistics (depending on your UI structure).
-            if (dataGridViewPing.Rows.Count > 0)
+            if (dataGridView1.Rows.Count > 0)
             {
-                dataGridViewPing.Rows[0].Cells["MaxPing"].Value = "0 ms";
-                dataGridViewPing.Rows[0].Cells["MinPing"].Value = "0 ms";
-                dataGridViewPing.Rows[0].Cells["AvgPing"].Value = "0 ms";
+                dataGridView1.Rows[0].Cells["MaxPing"].Value = "0 ms";
+                dataGridView1.Rows[0].Cells["MinPing"].Value = "0 ms";
+                dataGridView1.Rows[0].Cells["AvgPing"].Value = "0 ms";
             }
 
             TextBoxMaxJitter.Text = "0 ms";
