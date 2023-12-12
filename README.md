@@ -13,7 +13,7 @@
 
 **Shows Min, Avg, and Max values**: Ping, Packetloss and Jitter now shows min avg and max values.
 
-**Performance Statistics**: The application displays CPU and RAM usage statistics.
+**Performance Statistics**: The application displays CPU and RAM usage statistics. REMOVED!
 
 **Network Adapters Button**: Opens the Network adapters in control panel directly.
 
